@@ -58,11 +58,17 @@ public class PlayerProgram {
         af1.play();
 
         Player player2 = new Player();
+
         player2.addToPlaylist(song3);
         player2.addToPlaylist(song4);
         player2.addToPlaylist(af1);
 
+        // player2.addToPlaylist();
+
         player2.installCodec("NEW CODEC");
+
+        System.out.println("*******************Playing file f.mp4");
+        player2.playMedia("f.mp4");
 
         // try {
         player2.playAll();
@@ -77,7 +83,7 @@ public class PlayerProgram {
         // // e.printStackTrace();
         // }
 
-        System.out.println("After try");
+        // System.out.println("After try");
 
     }
 }

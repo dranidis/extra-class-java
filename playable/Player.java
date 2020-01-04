@@ -2,7 +2,11 @@ package playable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import playable.some.Playable;
 
@@ -15,15 +19,19 @@ import playable.some.Playable;
 public class Player {
 
 	List<String> installedCodecs = new ArrayList<>();
-	List<Playable> playlist = new ArrayList<>();
+	// List<Playable> playlist = new ArrayList<>();
+
+	// Interface varName = new ClassName()
+	// key -> value
+	// "file1" -> playable1
+	// "file2" -> playable2
+	// "file3" -> playable3
+	//
+	Map<String, Playable> playlist = new HashMap<>();
 
 	public void installDefaultCodecs() {
 		String[] defaultCodecs = { "CODEC1", "CODEC2", "CODEC3", "CODEC4" };
 		installedCodecs.addAll(Arrays.asList(defaultCodecs));
-	}
-
-	public void addToPlaylist(Playable object) {
-		playlist.add(object);
 	}
 
 	public void installCodec(String codecName) {
@@ -54,14 +62,28 @@ public class Player {
 	 * 
 	 */
 	public void playAll() {
-		// for all Playable objects in list playlist
-		// call play
-		// for(int i=0; i <= playlist.size(); ) {
-		// playlist.get(i).play();
-		// }
+
 		System.out.println("**************** Player plays all...");
-		for (Playable playable : playlist) {
-			// playable.play();
+
+		Set<Entry<String, Playable>> set = playlist.entrySet();
+
+
+		System.out.println("**************** Keys in map.");
+		System.out.println(playlist.keySet());		
+		System.out.println("**************** Values in map.");
+		System.out.println(playlist.values());
+
+		// for (  Entry<String, Playable> entry : playlist.entrySet()) {
+		// 	try {
+		// 		play(entry.getValue());
+		// 	} catch (CodecNotInstalledException e) {
+		// 		System.out.println(e.getMessage());
+		// 		install(e.getCodec());
+		// 	}
+		// }			
+		
+
+		for (Playable playable : playlist.values()) {
 			try {
 				play(playable);
 			} catch (CodecNotInstalledException e) {
@@ -74,6 +96,25 @@ public class Player {
 
 	private void install(String codec) {
 		System.out.println("Downloading from ....: " + codec);
+	}
+
+	// MAP PUT
+	public void addToPlaylist(Playable object) {
+		// put(key, value)
+		playlist.put(object.getFilename(), object);
+	}
+
+	// MAP GET
+	public void playMedia(String string) {
+		// for(Playable playable: playlist) {
+		// if (playable.getFilename().equals(string)) {
+		// playable.play();
+		// }
+		// }
+		//
+		// get(key) => value
+		Playable playable = playlist.get(string);
+		playable.play();
 	}
 
 	// DO NOT MODIFY THE ABOVE METHOD

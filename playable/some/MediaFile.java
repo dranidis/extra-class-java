@@ -70,8 +70,9 @@ public class MediaFile implements Playable {
         return duration;
     }
 
-    private void stop() {
-
+    @Override
+    public String getFilename() {
+        return filename;
     }
 
 }
