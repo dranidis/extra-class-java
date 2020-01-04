@@ -25,7 +25,12 @@ public class AudioFile extends MediaFile {
         this.genre = genre;
     }
 
-    @Override
+    public AudioFile(String genre, String filename) {
+        super(filename);
+        this.genre = genre;
+	}
+
+	@Override
     public void play() {
         // this.genre = "changed";
         // Mediafile object, object of the superclass.

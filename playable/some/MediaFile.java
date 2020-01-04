@@ -28,7 +28,7 @@ public class MediaFile implements Playable {
 
     private String filename;
     // private String codec;
-    private Codec codec;
+    private Codec codec = new Codec("CODEC1");
     private int duration;
 
     public MediaFile() { // define an implicit constructor
@@ -54,7 +54,11 @@ public class MediaFile implements Playable {
         // // "this" is the variable name to the current object of class Mediafile
     }
 
-    @Override
+    public MediaFile(String filename) {
+        this.filename = filename;
+	}
+
+	@Override
     public void play() {
         // String filename = "Some file name"; // local variable
         System.out.println("Now playing " + this.filename);

@@ -29,6 +29,12 @@ public class Player {
 	//
 	Map<String, Playable> playlist = new HashMap<>();
 
+	private PlayableFactory factory;
+
+	public Player(PlayableFactory factory) {
+		this.factory = factory;
+	}
+
 	public void installDefaultCodecs() {
 		String[] defaultCodecs = { "CODEC1", "CODEC2", "CODEC3", "CODEC4" };
 		installedCodecs.addAll(Arrays.asList(defaultCodecs));
@@ -115,6 +121,14 @@ public class Player {
 		// get(key) => value
 		Playable playable = playlist.get(string);
 		playable.play();
+	}
+
+	public void addToPlaylist(String type, String filename, String genre) {
+		// Playable x = new MediaFile(...)
+		// Playable y = new AudioFile(...)
+		// Playable z = new VideoFIle(....)
+		Playable playable = factory.makePlayable(type, filename, genre);
+		addToPlaylist(playable);
 	}
 
 	// DO NOT MODIFY THE ABOVE METHOD
